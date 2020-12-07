@@ -1,10 +1,13 @@
-import re
 
-pattern = re.compile("^#[a-f0-9]+")
+ids = [992, 993, 994, 996, 997, 998]
+min = min(ids)
+max = max(ids)
+print(min)
+print(max)
 
-hcls = ["#18171d","#be1503",'#ca97a6']
+ids_miss = []
+for i in range(min, max):
+    if i not in ids: ids_miss.append(i)
+print(ids_miss)
 
-for hcl in hcls:
-    print(pattern.fullmatch(hcl))
-    if not (pattern.fullmatch(hcl) and len(hcl) == 7):
-        print("hcl", hcl)
+
