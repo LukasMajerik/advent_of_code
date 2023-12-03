@@ -37,7 +37,7 @@ passports_valid = 0
 iteration=0
 for passport in data3:
     iteration +=1
-    print(iteration, "========", passport, )
+    # print(iteration, "========", passport, )
     
     valid = 0
     byr = passport.get('byr', '0')
@@ -78,11 +78,15 @@ for passport in data3:
                 if h1 not in range( 59, 77):
                     # print('3hgt', hgt, h1, h2)
                     valid+=1
+    else:
+        valid+=1
                 
 
     hcl = passport.get('hcl', "not-existing")
+
     if not(pattern.fullmatch(hcl) and len(hcl)==7): 
         # print("hcl", hcl)
+        # print(hcl)
         valid +=1
 
     ecl = passport.get('ecl', 'not-existing')        
@@ -91,13 +95,15 @@ for passport in data3:
         valid +=1
     
     pid = passport.get('pid', 'not-existing')
+    print(pid, '====')
     if not(len(pid)==9 and pid.isdigit()): 
+        print(pid)
         # print("pid", pid)
         valid +=1
 
     
     if valid == 0: passports_valid += 1
-    print("VALID", valid, "VALID PASSPORTS:", passports_valid)
+    # print("VALID", valid, "VALID PASSPORTS:", passports_valid)
     # passport.get('cid', None)
 
 
