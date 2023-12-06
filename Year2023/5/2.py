@@ -24,10 +24,12 @@ print("seeds:", seeds)
 
 seeds_trans = []
 for i in range(0, len(seeds), 2):
-    print("i:", i)
+    # print("i:", i)
     seeds_trans.append((seeds[i], seeds[i] + seeds[i + 1] - 1))
 
-print("seeds_trans:", seeds_trans)
+seeds_trans.sort()
+for e in seeds_trans:
+    print("seeds_trans:", f"from:{e[0]:,}      to:{e[1]:,}")
 
 
 print(88 * "*")
@@ -61,6 +63,10 @@ class Mapping:
         for e in mapping:
             f = (e[1], e[1] + e[2] - 1, e[0] - e[1])
             self.mapp_trans.append(f)
+        self._sort()
+
+    def _sort(self):
+        self.mapp_trans.sort(key=lambda a: a[0])
 
     def trans(self, x):
         for e in self.mapp_trans:
@@ -84,23 +90,23 @@ for e in mappings_trans:
     complexity *= len(e.mapp_trans)
 print("complexity:", complexity)
 
-min_ = 10000000000
-min_input = None
-for e in seeds_trans:
-    print(e)
-    for f in range(e[0], e[1] + 1):
-        # if f % 100000 == 0:
-        #     print(f)
-        print(f)
-        f2 = f
-        for g in mappings_trans:
-            # print(g)
-            f2 = g.trans(f2)
-        if f2 < min_:
-            min_ = f2
-            min_input = f
+# min_ = 10000000000
+# min_input = None
+# for e in seeds_trans:
+#     print(e)
+#     for f in range(e[0], e[1] + 1):
+#         # if f % 100000 == 0:
+#         #     print(f)
+#         print(f)
+#         f2 = f
+#         for g in mappings_trans:
+#             # print(g)
+#             f2 = g.trans(f2)
+#         if f2 < min_:
+#             min_ = f2
+#             min_input = f
 
-print("min_:", min_, "min_input:", min_input)
+# print("min_:", min_, "min_input:", min_input)
 
 # res = 79
 # for e in mappings_trans:
